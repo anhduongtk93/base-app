@@ -1,0 +1,6 @@
+steps:
+  - id: 'Brakeman'
+    name: 'presidentbeef/brakeman'
+    args:
+      - '-c'
+      - config/brakeman.yml
