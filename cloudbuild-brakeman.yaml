@@ -4,4 +4,3 @@ steps:
     args:
       - '-c'
       - config/brakeman.yml
-
