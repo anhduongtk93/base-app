@@ -1,13 +1,20 @@
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/base-app-sandbox/base-app', '.']
+    args: ['build', '-t', '${_GCR_IMAGE}', '.']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/base-app-sandbox/base-app']
+    args: ['push', '${_GCR_IMAGE}']
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'hello', '--image', 'gcr.io/base-app-sandbox/base-app', '--region', 'us-central1']
+    args: ['run', 'deploy', '${_SERVICE_NAME}', '--image', '${_GCR_IMAGE}', '--region', '${_REGION}']
 images:
-  - gcr.io/base-app-sandbox/base-app
+  - '${_GCR_IMAGE}'
+
+substitutions:
+#  _RAILS_ENV: 'production'
+  _REGION: 'asia-southeast1'
+  _SERVICE_NAME: 'base-app-sandbox'
+#  _GCP_PROJECT_ID: 'new-sell-car-core-dev'
+  _GCR_IMAGE: 'gcr.io/${PROJECT_ID}/${_SERVICE_NAME}:${TAG_NAME}'
