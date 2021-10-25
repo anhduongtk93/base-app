@@ -1,22 +1,13 @@
-#steps:
-#  - name: 'gcr.io/cloud-builders/docker'
-#    args: [ 'build', '-t', 'gcr.io/ivory-amphora-328109/base-app', '.' ]
-
-#steps:
-#  - name: 'gcr.io/cloud-builders/docker'
-#    args: ['build', '-t', 'gcr.io/ivory-amphora-328109/base-app', '.']
-#images: ['gcr.io/ivory-amphora-328109/base-app']
-
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/ivory-amphora-328109/base-app', '.']
+    args: ['build', '-t', 'gcr.io/base-app-sandbox/base-app', '.']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/ivory-amphora-328109/base-app']
+    args: ['push', 'gcr.io/base-app-sandbox/base-app']
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'hello', '--image', 'gcr.io/ivory-amphora-328109/base-app', '--region', 'us-central1']
+    args: ['run', 'deploy', 'hello', '--image', 'gcr.io/base-app-sandbox/base-app', '--region', 'us-central1']
 images:
-  - gcr.io/ivory-amphora-328109/base-app
+  - gcr.io/base-app-sandbox/base-app
