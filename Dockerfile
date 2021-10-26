@@ -3,19 +3,12 @@
 # https://hub.docker.com/_/ruby
 FROM ruby:2.7.4
 
-# Install production dependencies.
-#WORKDIR /usr/src/app
-#COPY Gemfile Gemfile.lock ./
-#ENV BUNDLE_FROZEN=true
-#RUN gem uninstall bundler
-#RUN gem install bundler -v 2.2.17 --no-document
-## Copy local code to the container image.
-#COPY . ./
-#
-## Run the web service on container startup.
-#CMD ["ruby", "./app.rb"]
+ARG RAILS_ENV_ARG
 
-# ------------------------------
+ENV RAILS_ENV=${RAILS_ENV_ARG:-production}
+ENV NODE_ENV=${RAILS_ENV:-production}
+ENV RACK_ENV=${RAILS_ENV:-production}
+
 RUN mkdir /app
 WORKDIR /app
 COPY  Gemfile Gemfile.lock /app/
