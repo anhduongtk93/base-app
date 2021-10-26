@@ -16,4 +16,4 @@ bundle exec rails db:migrate
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f tmp/pids/server.pid
 
-bundle exec rails s -p $RAILS_PORT -b 0.0.0.0
+bundle exec rails s -p $RAILS_PORT -b 0.0.0.0 -e production
