@@ -16,5 +16,6 @@ substitutions:
 #  _RAILS_ENV: 'production'
   _REGION: 'asia-southeast1'
   _SERVICE_NAME: 'base-app'
-#  _GCP_PROJECT_ID: 'new-sell-car-core-dev'
   _GCR_IMAGE: 'gcr.io/${PROJECT_ID}/${_SERVICE_NAME}'
+#  PRIMARY_DB_SOCKET: '/cloudsql/${_CLOUD_SQL}'
+#  _CLOUD_SQL: '${PROJECT_ID}:${_REGION}:db-025011'
