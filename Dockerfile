@@ -3,9 +3,9 @@
 # https://hub.docker.com/_/ruby
 FROM ruby:2.7.4
 
-ARG RAILS_ENV_ARG
-
-ENV RAILS_ENV=${RAILS_ENV_ARG:-production}
+#ARG RAILS_ENV_ARG
+#
+#ENV RAILS_ENV=${RAILS_ENV_ARG:-production}
 #ENV NODE_ENV=${RAILS_ENV:-production}
 #ENV RACK_ENV=${RAILS_ENV:-production}
 
